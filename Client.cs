@@ -22,17 +22,22 @@ namespace Server
             {
                 case UserType.Unregistered :
                     {
-                        responseList = new UnregisteredResponsesList();
+                        responseList = UnregisteredResponsesList.GetInstance();
                         break;
                     }
                 case UserType.Reseller :
                     {
-                        responseList = new ResellersResponsesList();
+                        responseList = ResellersResponsesList.GetInstance();
                         break;
                     }
                 case UserType.Manufacture :
                     {
-                        responseList = new ManufacturersResponsesList();
+                        responseList = ManufacturersResponsesList.GetInstance();
+                        break;
+                    }
+                case UserType.Moderator:
+                    {
+                        responseList = ModeratorsResponsesList.GetInstance();
                         break;
                     }
             }
@@ -56,11 +61,17 @@ namespace Server
                         builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
                     }
                     while (stream.DataAvailable);
+                    Console.WriteLine(builder.ToString());
 
-                    
-                    //foreach(var response in UserResponse.)
-                    
-                    
+                    //Порівняння запиту клієнта з уже наявними
+                    foreach (var response in responseList.GetResponseList())
+                    {
+                        if(response.Name == builder.ToString())
+                        {
+                            Console.WriteLine("я бачу твоє повідомлення!");
+                        }
+                    }
+                                   
                     string message = builder.ToString();
 
                     Console.WriteLine(message);

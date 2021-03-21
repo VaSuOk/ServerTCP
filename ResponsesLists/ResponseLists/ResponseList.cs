@@ -15,5 +15,6 @@ namespace Server.ResponsesLists.ResponseLists
             InitResponseList();
         }
         protected virtual void InitResponseList() { }
+        public IReadOnlyList<Response> GetResponseList() { return listResponse; }
     }
 }
