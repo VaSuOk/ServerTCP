@@ -7,13 +7,20 @@ namespace Server.ResponsesLists.ResponseLists
 {
     class UnregisteredResponsesList : ResponseList
     {
-        public static IReadOnlyList<Response> UnregisteredResponses => ListResponse.AsReadOnly();
-        public override void InitResponseList()
+        
+        private static UnregisteredResponsesList unregisteredResponsesList;
+        protected override void InitResponseList()
         {
             ListResponse.Add(new RegistrationResponse());
             ListResponse.Add(new LoginResponse());
             Console.WriteLine("Вроді викликався цей метод!");
         }
-        public UnregisteredResponsesList() : base() { }
+
+        private UnregisteredResponsesList() : base() { }
+        public static UnregisteredResponsesList GetInstance()
+        {
+            return unregisteredResponsesList == null ? (unregisteredResponsesList = new UnregisteredResponsesList()) : unregisteredResponsesList;
+        }
+        
     }
 }

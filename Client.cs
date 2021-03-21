@@ -1,4 +1,5 @@
 ﻿using Server.ResponsesLists.ResponseLists;
+using Server.Users;
 using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -11,11 +12,30 @@ namespace Server
     {
         private TcpClient client;
         private ResponseList responseList;
+        private User user;
         
         public Client(TcpClient tcpClient /*+ тип юзера*/)
         {
             client = tcpClient;
-            //if()
+            user = new User();
+            switch (user.GetUserType())
+            {
+                case UserType.Unregistered :
+                    {
+                        responseList = new UnregisteredResponsesList();
+                        break;
+                    }
+                case UserType.Reseller :
+                    {
+                        responseList = new ResellersResponsesList();
+                        break;
+                    }
+                case UserType.Manufacture :
+                    {
+                        responseList = new ManufacturersResponsesList();
+                        break;
+                    }
+            }
         }
 
         public void Process()

@@ -23,5 +23,6 @@ namespace Server.Users
             this.userType = UserType.Unregistered;
             this.PIB = "";
         }
+        public UserType GetUserType() { return this.userType; }
     }
 }

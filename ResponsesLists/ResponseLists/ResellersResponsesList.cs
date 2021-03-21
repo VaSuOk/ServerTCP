@@ -7,7 +7,12 @@ namespace Server.ResponsesLists.ResponseLists
 {
     class ResellersResponsesList : ResponseList
     {
-        private static List<Response> ResponseList;
-        public static IReadOnlyList<Response> ResellersResponses => ResponseList.AsReadOnly();
+        private static ResellersResponsesList resellersResponsesList;
+        private ResellersResponsesList() : base() { }
+        protected override void InitResponseList() { /*ДОПИСАТИ*/}
+        public static ResellersResponsesList GetInstance()
+        {
+            return resellersResponsesList == null ? resellersResponsesList = new ResellersResponsesList() : resellersResponsesList;
+        }
     }
 }

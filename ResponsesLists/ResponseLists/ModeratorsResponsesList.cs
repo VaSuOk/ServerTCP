@@ -7,11 +7,12 @@ namespace Server.ResponsesLists.ResponseLists
 {
     class ModeratorsResponsesList : ResponseList
     {
-        private static List<Response> ResponseList;
-        public static IReadOnlyList<Response> ModeratorsResponses => ResponseList.AsReadOnly();
-        public override void InitResponseList()
+        private static ModeratorsResponsesList moderatorsResponsesList;
+        protected override void InitResponseList() {/*Write!!! */}
+        private ModeratorsResponsesList(): base() { }
+        public static ModeratorsResponsesList GetInstance()
         {
-
+            return moderatorsResponsesList == null ? moderatorsResponsesList = new ModeratorsResponsesList() : moderatorsResponsesList;
         }
     }
 }

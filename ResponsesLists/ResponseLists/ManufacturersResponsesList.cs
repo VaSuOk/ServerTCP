@@ -7,12 +7,12 @@ namespace Server.ResponsesLists.ResponseLists
 {
     class ManufacturersResponsesList : ResponseList
     {
-        private static List<Response> ResponseList;
-        public static IReadOnlyList<Response> ManufacturersResponses => ResponseList.AsReadOnly();
-
-        public override void InitResponseList()
+        private static ManufacturersResponsesList manufacturersResponsesList;
+        private ManufacturersResponsesList() : base() { }
+        protected override void InitResponseList() {}
+        public static ManufacturersResponsesList GetInstance()
         {
-
+            return manufacturersResponsesList == null ? manufacturersResponsesList = new ManufacturersResponsesList() : manufacturersResponsesList;
         }
     }
 }
