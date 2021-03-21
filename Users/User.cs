@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Server.Lists_of_requests
+namespace Server.Users
 {
-    class ListOfRequestLists
+    class User
     {
     }
 }

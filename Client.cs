@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.ResponsesLists.ResponseLists;
+using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
@@ -8,11 +9,13 @@ namespace Server
     
     class Client
     {
-        public TcpClient client;
+        private TcpClient client;
+        private ResponseList responseList;
         
-        public Client(TcpClient tcpClient)
+        public Client(TcpClient tcpClient /*+ тип юзера*/)
         {
             client = tcpClient;
+            //if()
         }
 
         public void Process()
@@ -35,7 +38,7 @@ namespace Server
                     while (stream.DataAvailable);
 
                     
-                    
+                    //foreach(var response in UserResponse.)
                     
                     
                     string message = builder.ToString();
