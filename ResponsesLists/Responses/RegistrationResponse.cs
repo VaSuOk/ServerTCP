@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.Users;
+using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Server.ResponsesLists.Responses
     {
         public override string Name => "registration";
 
-        public override void Execute(NetworkStream stream)
+        public override void Execute(ref NetworkStream stream, string Request, ref User user)
         {
             throw new NotImplementedException();
         }

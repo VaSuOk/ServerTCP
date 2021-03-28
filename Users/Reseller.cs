@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Server.Users
 {
-    class Reseller : User
+    public class Reseller : User
     {
     }
 }

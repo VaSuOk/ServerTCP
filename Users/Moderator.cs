@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Server.Users
 {
-    class Moderator : User
+    public class Moderator : User
     {
     }
 }

@@ -62,23 +62,17 @@ namespace Server
                     }
                     while (stream.DataAvailable);
                     Console.WriteLine(builder.ToString());
-
+                    string message = builder.ToString();
                     //Порівняння запиту клієнта з уже наявними
+                    
                     foreach (var response in responseList.GetResponseList())
                     {
-                        if(response.Name == builder.ToString())
+                        if (response.Name == message.Split(':')[0])
                         {
-                            Console.WriteLine("я бачу твоє повідомлення!");
+                            response.Execute(ref stream, message, ref user);
+                            break;
                         }
                     }
-                                   
-                    string message = builder.ToString();
-
-                    Console.WriteLine(message);
-                    // отправляем обратно сообщение в верхнем регистре
-                    message = message.Substring(message.IndexOf(':') + 1).Trim().ToUpper();
-                    data = Encoding.Unicode.GetBytes(message);
-                    stream.Write(data, 0, data.Length);
                 }
             }
             catch (Exception ex)
