@@ -27,6 +27,14 @@ namespace Server.Users
             this.Email = Email;
             this.Phone = Phone;
         }
+        public User(uint id, UserType userType, string PIB)
+        {
+            this.id = id;
+            this.userType = userType;
+            this.PIB = PIB;
+            this.Email = "";
+            this.Phone = "";
+        }
         public User()
         {
             this.id = 0;

@@ -27,26 +27,27 @@ namespace Server.ResponsesLists.Responses
                 command.Parameters.Add("@login", MySqlDbType.VarChar).Value = logpass[1];
                 command.Parameters.Add("@password", MySqlDbType.VarChar).Value = logpass[2];
                 adapter.SelectCommand = command;
+
                 adapter.Fill(temp);
                 if(temp.Rows.Count > 0)
                 {
-                    data = Encoding.Unicode.GetBytes("true");
+                    data = Encoding.Unicode.GetBytes("1");
                     user = new User(
-                                    Convert.ToUInt32(temp.Rows[0]),
-                                    User.ConvertToEnum(Convert.ToString(temp.Rows[1])),
-                                    Convert.ToString(temp.Rows[2])
+                                    Convert.ToUInt32(temp.Rows[0][0]),
+                                    User.ConvertToEnum(Convert.ToString(temp.Rows[0][1])),
+                                    Convert.ToString(temp.Rows[0][2])
                                     );
                 }
                 else
                 {
-                    data = Encoding.Unicode.GetBytes("false");
+                    data = Encoding.Unicode.GetBytes("0");
                 }
                 stream.Write(data, 0, data.Length);
                 DataBase.Get_Instance().Disconnect();
             }
             catch(Exception e)
             {
-                data = Encoding.Unicode.GetBytes("false");
+                data = Encoding.Unicode.GetBytes("-1");
                 stream.Write(data, 0, data.Length);
                 DataBase.Get_Instance().Disconnect();
                 //вивід в логи або в консоль

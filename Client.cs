@@ -61,14 +61,15 @@ namespace Server
                         builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
                     }
                     while (stream.DataAvailable);
-                    Console.WriteLine(builder.ToString());
+                    
                     string message = builder.ToString();
                     //Порівняння запиту клієнта з уже наявними
                     
                     foreach (var response in responseList.GetResponseList())
                     {
                         if (response.Name == message.Split(':')[0])
-                        {
+                        {   
+                            Console.WriteLine(builder.ToString());
                             response.Execute(ref stream, message, ref user);
                             break;
                         }

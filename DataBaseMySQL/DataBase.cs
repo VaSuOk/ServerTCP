@@ -8,6 +8,7 @@ namespace Server.DataBaseMySQL
     class DataBase
     {
         public MySqlConnection connection;
+         
         private static DataBase dataBase;
         private DataBase()
         {
